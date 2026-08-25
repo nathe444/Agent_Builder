@@ -1,0 +1,198 @@
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+Failed to proxy http://localhost:8000/chatbots AggregateError: 
+    at ignore-listed frames {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:8000
+        at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 8000
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:8000
+        at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 8000
+    }
+  ]
+}
+AggregateError: 
+    at ignore-listed frames {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:8000
+        at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 8000
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:8000
+        at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 8000
+    }
+  ]
+}
+Failed to proxy http://localhost:8000/chatbots AggregateError: 
+    at ignore-listed frames {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:8000
+        at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 8000
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:8000
+        at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 8000
+    }
+  ]
+}
+AggregateError: 
+    at ignore-listed frames {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:8000
+        at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 8000
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:8000
+        at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:8000) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 8000
+    }
+  ]
+}
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+[browser] ⨯ unhandledRejection: AxiosError: Request failed with status code 404
+[browser] ⨯ unhandledRejection: AxiosError: Request failed with status code 404
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+[browser] ⨯ unhandledRejection: AxiosError: Request failed with status code 404
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async useChat.useCallback[send] (src/hooks/use-chat.ts:24:26)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:71:5)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async useChat.useCallback[send] (src/hooks/use-chat.ts:24:26)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:71:5)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] Uncaught ReferenceError: isStreaming is not defined
+    at ChatPage (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:199:23)
+  197 |             onChange={(e) => setInput(e.target.value)}
+  198 |             placeholder={"Type a message..."}
+> 199 |             disabled={isStreaming}
+      |                       ^
+  200 |             className="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-light disabled:opacity-50"
+  201 |           />
+  202 |           <button
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:74:7)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:74:7)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:74:7)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:74:7)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:74:7)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] ⨯ unhandledRejection: AxiosError: Network Error
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:74:7)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
+[browser] ⨯ unhandledRejection: AxiosError: Request failed with status code 401
+    at async sendMessage (src/lib/api.ts:156:15)
+    at async handleSend (src/app/(dashboard)/chatbots/[chatbotId]/chat/page.tsx:74:7)
+  154 |   data: ChatRequest,
+  155 | ): Promise<ChatResponse> {
+> 156 |   const res = await api.post(
+      |               ^
+  157 |     `/chat/conversations/${conversationId}/messages`,
+  158 |     data,
+  159 |   );
