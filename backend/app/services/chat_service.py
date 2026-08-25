@@ -27,17 +27,17 @@ from app.llms.llm_service import (
     llm_service
 )
 
+from typing import Iterator
 
 class ChatService:
 
     @staticmethod
-    def chat(
+    def prepare_chat(
         conversation_id: int,
         question: str,
         current_user: User,
         db: Session,
     ):
-
         # --------------------------------------------------
         # 1. Validate conversation ownership
         # --------------------------------------------------
@@ -127,8 +127,29 @@ class ChatService:
             )
         )
 
+        return conversation, prompt_messages, chunks
+
+    @staticmethod
+    def chat(
+        conversation_id: int,
+        question: str,
+        current_user: User,
+        db: Session,
+    ):
+
+        (
+            conversation,
+            prompt_messages,
+            chunks,
+        ) = ChatService.prepare_chat(
+            conversation_id=conversation_id,
+            question=question,
+            current_user=current_user,
+            db=db,
+        )
+
         # --------------------------------------------------
-        # 8. Call LLM
+        # Call LLM
         # --------------------------------------------------
 
         answer = llm_service.chat(
@@ -136,7 +157,7 @@ class ChatService:
         )
 
         # --------------------------------------------------
-        # 9. Prepare citations
+        # Prepare citations
         # --------------------------------------------------
 
         citations = []
@@ -158,7 +179,7 @@ class ChatService:
             )
 
         # --------------------------------------------------
-        # 10. Save assistant message
+        # Save assistant message
         # --------------------------------------------------
 
         assistant_message = (
@@ -172,7 +193,7 @@ class ChatService:
         )
 
         # --------------------------------------------------
-        # 11. Return result
+        # Return result
         # --------------------------------------------------
 
         return {
@@ -181,6 +202,72 @@ class ChatService:
             "answer": answer,
             "citations": citations,
         }
+
+    @staticmethod
+    def chat_stream(
+        conversation_id: int,
+        question: str,
+        current_user: User,
+        db: Session,
+    ) -> Iterator[str]:
+
+        (
+            conversation,
+            prompt_messages,
+            chunks,
+        ) = ChatService.prepare_chat(
+            conversation_id=conversation_id,
+            question=question,
+            current_user=current_user,
+            db=db,
+        )
+
+        full_answer = ""
+
+        try:
+
+            stream = llm_service.chat_stream(
+                messages=prompt_messages
+            )
+
+            for token in stream:
+
+                full_answer += token
+
+                yield token
+
+            # Save completed assistant response
+            citations = []
+
+            for chunk in chunks:
+
+                citations.append(
+                    {
+                        "document_id": chunk.get(
+                            "document_id"
+                        ),
+                        "chunk_id": chunk.get(
+                            "id"
+                        ),
+                        "score": chunk.get(
+                            "relevance_score"
+                        ),
+                    }
+                )
+
+            message_service.create_message(
+                conversation=conversation,
+                role=MessageRole.ASSISTANT,
+                content=full_answer,
+                citations=citations,
+                db=db,
+            )
+
+        except Exception:
+
+            db.rollback()
+
+            raise
 
 
 chat_service = ChatService()

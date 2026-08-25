@@ -2,6 +2,8 @@ from app.llms.provider_factory import (
     LLMProviderFactory
 )
 
+from typing import Iterator
+
 
 class LLMService:
 
@@ -18,6 +20,16 @@ class LLMService:
     ) -> str:
 
         return self.provider.chat(
+            messages
+        )
+
+    
+    def chat_stream(
+        self,
+        messages: list[dict]
+    ) -> Iterator[str]:
+
+        return self.provider.chat_stream(
             messages
         )
 

@@ -1,5 +1,6 @@
 import os
 import cohere
+from typing import Iterator
 
 from app.llms.providers.base import BaseLLMProvider
 
@@ -38,3 +39,28 @@ class CohereProvider(BaseLLMProvider):
             return ""
 
         return response.message.content[0].text
+
+    
+
+    def chat_stream(
+        self,
+        messages: list[dict]
+    ) -> Iterator[str]:
+
+        response = self.client.chat_stream(
+            model=self.model,
+            messages=messages
+        )
+
+        for event in response:
+
+            if event.type == "content-delta":
+
+                if event.delta and event.delta.message:
+                    content = event.delta.message.content
+                    if isinstance(content, str):
+                        yield content
+                    elif hasattr(content, 'text'):
+                        yield content.text
+                    elif isinstance(content, list) and len(content) > 0:
+                        yield content[0].text if hasattr(content[0], 'text') else str(content[0])
